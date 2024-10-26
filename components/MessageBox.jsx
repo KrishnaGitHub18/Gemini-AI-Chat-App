@@ -7,7 +7,7 @@ export default function MessageBox() {
   const handleGeminiAPI = async () => {
     try {
         const que = "hey";
-        const response_API = await axios.post('http://localhost:5000/api/apiHandler', { que });
+        const response_API = await axios.post('https://gemini-ai-chat-app.vercel.app/api/apiHandler', { que });
         console.log(response_API.data);
     } catch (error) {
         console.log(error, "error in API handling")
