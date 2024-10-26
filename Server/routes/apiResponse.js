@@ -8,8 +8,8 @@ router.post('/apiHandler', async (req, res) => {
 
     try {
         
-        console.log(que);
-        res.send(que);
+        // console.log(que);
+        // res.send(que);
         const response_API = await axios.post('https://gemini-api-87l2.onrender.com/api/testapi', { que });
         res.status(200).send(response_API.data);
 
