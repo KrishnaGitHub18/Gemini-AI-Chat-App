@@ -12,6 +12,7 @@ app.use(express.json());
 // CORS
 app.use(cors());
 app.use('/api', require('./routes/apiResponse'));
+app.use('/api', require('./routes/printData'));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
