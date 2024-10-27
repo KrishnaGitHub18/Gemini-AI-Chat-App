@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, TextInput, } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export default function MessageBox() {
@@ -17,8 +17,9 @@ export default function MessageBox() {
 
       if (text) {
         const response_API = await axios.post('https://gemini-ai-chat-app.vercel.app/api/apiHandler', { que });
-        const cleanedText = response_API.data.replace(/\*/g, '').replace(/\n+/g, ' ');
-        console.log(cleanedText);
+        console.log(response_API.data);
+        // const cleanedText = response_API.data.replace(/\*/g, '').replace(/\n+/g, ' ');
+        // console.log(cleanedText);
 
       } else {
         console.log('Please enter a question');
@@ -29,6 +30,17 @@ export default function MessageBox() {
       console.log(error, "error in API handling")
     }
   }
+
+  // const [chatData, setChatData] = useState([]);
+  // const fetchChatData = async () => {
+  //   const response_chatAPI = await axios.get('https://gemini-ai-chat-app.vercel.app/api/printData');
+  //   setChatData(response_chatAPI.data);
+  //   console.log(response_chatAPI.data);
+  // }
+  // useEffect(  () => {
+  //   fetchChatData();
+  // }, [text]);
+
 
   return (
     <View style={styles.container}>
