@@ -9,11 +9,12 @@ router.post('/apiHandler', async (req, res) => {
     const que = req.body.que;
 
     try {
-        
-        console.log(que);
-        res.send(que);
-        const response_API = await axios.post('https://gemini-api-87l2.onrender.com/api/testapi', { que });
-        res.status(200).send(response_API.data);
+
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });       
+        const result = await model.generateContent(que);
+        console.log(result.response.text());
+        res.status(200).send(result.response.text());
 
     } catch (error) {
         console.error("Error generating AI content:", error);
