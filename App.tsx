@@ -2,17 +2,25 @@ import { View, Text, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 're
 import React from 'react'
 import HeaderView from './components/HeaderView'
 import MessageBox from './components/MessageBox'
+import Chats from './components/Chats'
+import { Provider } from 'react-redux'
+import store from './store/Store'
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.main_container}>
-      <ScrollView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.main_container}>
+
         <View style={styles.first_container}>
           <HeaderView />
+          <ScrollView>
+            <Chats />
+          </ScrollView>
           <MessageBox />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+
+      </SafeAreaView>
+    </Provider>
   )
 }
 
@@ -29,6 +37,6 @@ const styles = StyleSheet.create({
     // borderWidth: 2,
     flex: 1,
     justifyContent: 'space-between',
-    height: height-20
+    height: height - 20
   }
 })

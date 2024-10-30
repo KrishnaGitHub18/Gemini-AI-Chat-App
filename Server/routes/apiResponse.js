@@ -17,7 +17,7 @@ router.post('/apiHandler', async (req, res) => {
         }
 
         await User.create({
-            question: que,
+            question: que.slice(0,-21),
             answer: cleanedText
         });
 

@@ -1,10 +1,14 @@
-import { StyleSheet, Text, View, Button, TextInput, } from 'react-native'
+import { StyleSheet, Text, View, Button, TextInput, Alert, } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setChatData } from '../store/chatDataSlice'
 
 export default function MessageBox() {
 
   const [text, setText] = useState('');
+  const dispatch = useDispatch();
+
 
   const handleGeminiAPI = async () => {
 
@@ -17,30 +21,34 @@ export default function MessageBox() {
 
       if (text) {
         const response_API = await axios.post('https://gemini-ai-chat-app.vercel.app/api/apiHandler', { que });
-        console.log(response_API.data);
-        // const cleanedText = response_API.data.replace(/\*/g, '').replace(/\n+/g, ' ');
-        // console.log(cleanedText);
+        // const response_API = await axios.post('http://10.81.55.172:5000/api/apiHandler', { que });
+        if (response_API.data.success){
+          console.log("done hai");
+          fetchChatData();
+        }
+        else {
+          console.log("error hai");
+        }
 
       } else {
         console.log('Please enter a question');
       }
-
       setText('');
+      
     } catch (error) {
-      console.log(error, "error in API handling")
+      console.log(JSON.stringify(error.message), "error in API handling")
     }
   }
 
-  // const [chatData, setChatData] = useState([]);
-  // const fetchChatData = async () => {
-  //   const response_chatAPI = await axios.get('https://gemini-ai-chat-app.vercel.app/api/printData');
-  //   setChatData(response_chatAPI.data);
-  //   console.log(response_chatAPI.data);
-  // }
-  // useEffect(  () => {
-  //   fetchChatData();
-  // }, [text]);
+  const fetchChatData = async () => {
+    const response_chatAPI = await axios.get('https://gemini-ai-chat-app.vercel.app/api/printData');
+    // console.log(response_chatAPI.data);
+    dispatch(setChatData(response_chatAPI.data));
+  }
 
+  useEffect(()=>{
+    fetchChatData();
+  }, [])
 
   return (
     <View style={styles.container}>

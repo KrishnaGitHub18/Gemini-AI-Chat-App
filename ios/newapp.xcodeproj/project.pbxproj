@@ -14,6 +14,15 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-newapp-newappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-newapp-newappTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		FFF42974D1A948FDACD96407 /* Playwrite GB S.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36FA9B5629264A43B65C5F00 /* Playwrite GB S.ttf */; };
+		C5308F2F6A064207B67428DC /* PlaywriteGBS-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00193168A27748C1861CA279 /* PlaywriteGBS-ExtraLight.ttf */; };
+		00D9031E7BF14C7C8AB61342 /* PlaywriteGBS-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 911598896EF64ACD8D744851 /* PlaywriteGBS-ExtraLightItalic.ttf */; };
+		F6EEF422FEE6431FB0E6A866 /* PlaywriteGBS-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 779C294BFF2D47F08A86D83E /* PlaywriteGBS-Italic.ttf */; };
+		70714F98E3B045249DA503AA /* PlaywriteGBS-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FA25594DF64412C8C881F9E /* PlaywriteGBS-Light.ttf */; };
+		6E862A1EDBD547B1AE2F9BF2 /* PlaywriteGBS-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE538040FB27431EAB05EBFF /* PlaywriteGBS-LightItalic.ttf */; };
+		E75F1BA6DA1F40E4B545AA27 /* PlaywriteGBS-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C4B443252964AB7A4DD8851 /* PlaywriteGBS-Regular.ttf */; };
+		E1B0ABE3FD564AC7A6A62482 /* PlaywriteGBS-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 730DE65C2B7F49F6A5CBACF7 /* PlaywriteGBS-Thin.ttf */; };
+		EEF9947ECDD44D7FB3EEBC6A /* PlaywriteGBS-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DE26F98CB734B41A9792BDE /* PlaywriteGBS-ThinItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,15 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = newapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-newapp-newappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newapp-newappTests.release.xcconfig"; path = "Target Support Files/Pods-newapp-newappTests/Pods-newapp-newappTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		36FA9B5629264A43B65C5F00 /* Playwrite GB S.ttf */ = {isa = PBXFileReference; name = "Playwrite GB S.ttf"; path = "../assests/font/Playwrite GB S.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		00193168A27748C1861CA279 /* PlaywriteGBS-ExtraLight.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-ExtraLight.ttf"; path = "../assests/font/PlaywriteGBS-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		911598896EF64ACD8D744851 /* PlaywriteGBS-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-ExtraLightItalic.ttf"; path = "../assests/font/PlaywriteGBS-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		779C294BFF2D47F08A86D83E /* PlaywriteGBS-Italic.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-Italic.ttf"; path = "../assests/font/PlaywriteGBS-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3FA25594DF64412C8C881F9E /* PlaywriteGBS-Light.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-Light.ttf"; path = "../assests/font/PlaywriteGBS-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DE538040FB27431EAB05EBFF /* PlaywriteGBS-LightItalic.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-LightItalic.ttf"; path = "../assests/font/PlaywriteGBS-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7C4B443252964AB7A4DD8851 /* PlaywriteGBS-Regular.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-Regular.ttf"; path = "../assests/font/PlaywriteGBS-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		730DE65C2B7F49F6A5CBACF7 /* PlaywriteGBS-Thin.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-Thin.ttf"; path = "../assests/font/PlaywriteGBS-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2DE26F98CB734B41A9792BDE /* PlaywriteGBS-ThinItalic.ttf */ = {isa = PBXFileReference; name = "PlaywriteGBS-ThinItalic.ttf"; path = "../assests/font/PlaywriteGBS-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +142,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				ED11B83EF9674B05A5CD60D8 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +168,23 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		ED11B83EF9674B05A5CD60D8 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				36FA9B5629264A43B65C5F00 /* Playwrite GB S.ttf */,
+				00193168A27748C1861CA279 /* PlaywriteGBS-ExtraLight.ttf */,
+				911598896EF64ACD8D744851 /* PlaywriteGBS-ExtraLightItalic.ttf */,
+				779C294BFF2D47F08A86D83E /* PlaywriteGBS-Italic.ttf */,
+				3FA25594DF64412C8C881F9E /* PlaywriteGBS-Light.ttf */,
+				DE538040FB27431EAB05EBFF /* PlaywriteGBS-LightItalic.ttf */,
+				7C4B443252964AB7A4DD8851 /* PlaywriteGBS-Regular.ttf */,
+				730DE65C2B7F49F6A5CBACF7 /* PlaywriteGBS-Thin.ttf */,
+				2DE26F98CB734B41A9792BDE /* PlaywriteGBS-ThinItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +281,15 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				FFF42974D1A948FDACD96407 /* Playwrite GB S.ttf in Resources */,
+				C5308F2F6A064207B67428DC /* PlaywriteGBS-ExtraLight.ttf in Resources */,
+				00D9031E7BF14C7C8AB61342 /* PlaywriteGBS-ExtraLightItalic.ttf in Resources */,
+				F6EEF422FEE6431FB0E6A866 /* PlaywriteGBS-Italic.ttf in Resources */,
+				70714F98E3B045249DA503AA /* PlaywriteGBS-Light.ttf in Resources */,
+				6E862A1EDBD547B1AE2F9BF2 /* PlaywriteGBS-LightItalic.ttf in Resources */,
+				E75F1BA6DA1F40E4B545AA27 /* PlaywriteGBS-Regular.ttf in Resources */,
+				E1B0ABE3FD564AC7A6A62482 /* PlaywriteGBS-Thin.ttf in Resources */,
+				EEF9947ECDD44D7FB3EEBC6A /* PlaywriteGBS-ThinItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
