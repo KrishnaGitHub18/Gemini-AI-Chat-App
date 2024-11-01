@@ -43,43 +43,45 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 5,
         marginVertical: 10,
+        paddingHorizontal: 10,
     },
     main_text: {
-        color: 'black'
+        color: 'white'
     },
     message_container: {
         marginVertical: 10
     },
     question_conatiner: {
-        color: 'black',
+        color: 'white',
         marginVertical: 10,
         maxWidth: '95%',
         paddingVertical: 20,
         paddingHorizontal: 20,
-        fontSize: 16,
+        fontSize: 14,
         borderRadius: 10,
-        backgroundColor: '#F9F6EE',
+        // backgroundColor: '#F9F6EE',
+        backgroundColor: '#292929',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 2,
-        fontFamily: 'PlaywriteGBS-Regular'
+        // fontFamily: 'PlaywriteGBS-Regular'
     },
     answer_conatiner: {
-        color: 'black',
+        color: 'white',
         marginVertical: 10,
         maxWidth: '95%',
         paddingVertical: 20,
         paddingHorizontal: 20,
-        fontSize: 16,
+        fontSize: 14,
         borderRadius: 10,
-        backgroundColor: '#F9F6EE',
+        backgroundColor: '#E64444',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
         elevation: 2,
-        fontFamily: 'PlaywriteGBS-Regular'
+        // fontFamily: 'PlaywriteGBS-Regular'
     }
 });

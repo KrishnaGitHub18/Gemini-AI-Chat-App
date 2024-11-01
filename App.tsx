@@ -5,6 +5,7 @@ import MessageBox from './components/MessageBox'
 import Chats from './components/Chats'
 import { Provider } from 'react-redux'
 import store from './store/Store'
+import Login from './components/Login'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Chats />
           </ScrollView>
           <MessageBox />
+          {/* <Login /> */}
         </View>
 
       </SafeAreaView>
@@ -29,9 +31,9 @@ export default App
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   main_container: {
-    padding: 10,
+    // padding: 10,
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#202020",
   },
   first_container: {
     // borderWidth: 2,

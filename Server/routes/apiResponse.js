@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
 const User = require('../Model/ChatDataModel');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+require('dotenv').config();  
 
 router.post('/apiHandler', async (req, res) => {
     var que = req.body.que;
     que += " in 200 words maximum";
+    console.log(que);
+    // return;
 
     try {
-        const response_API = await axios.post('https://gemini-api-87l2.onrender.com/api/testapi', { que });
-        const cleanedText = response_API.data.replace(/\*/g, '').replace(/[\r\n]+/g, ' ');
+
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });      
+        const result = await model.generateContent(que);
+        const response_API = result.response.text();
+
+
+        console.log(result.response.text());
+        const cleanedText = response_API.replace(/\*/g, '').replace(/[\r\n]+/g, ' ');
 
         if (!cleanedText || !que) {
             res.status(400).json({ success: false, message: "Error" });
