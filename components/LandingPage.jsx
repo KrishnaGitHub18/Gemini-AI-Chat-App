@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         color: 'white',
         fontSize: 24,
-        top: 510,
+        top: 490,
         textAlign: 'left',
         marginHorizontal: 40
     },
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         color: '#DEDEDE',
         fontSize: 10,
-        top: 590,
+        top: 570,
         textAlign: 'left',
         marginHorizontal: 50
     },
     launchButton: {
         position: 'absolute',
-        top: 710,
+        top: 670,
         height: 50,
         width: 320,
         borderRadius: 20,

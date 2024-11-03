@@ -1,24 +1,59 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, AsyncStorage } from 'react-native'
 import React, { useState } from 'react'
 import Logo from '../assests/logo.png'
 import GoogleLogo from '../assests/Login/Google.png'
 import FacebookLogo from '../assests/Login/facebook.png'
 import AppleLogo from '../assests/Login/apple.png'
-import NameIcon from '../assests/Login/Name.png'
 import EmailIcon from '../assests/Login/Email.png'
 import PasswordIcon from '../assests/Login/Password.png'
 import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
 
 export default function Login() {
 
-    const [text, setText] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const navigation = useNavigation();
     const handleNavigSignup = () => {
         navigation.navigate('Signup')
     }
-    const handleNavigChat = () => {
-        navigation.navigate('Chats')
+
+    const mailValidator = (email) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(email) === false) {
+            return {valid: false};
+        }
+        else {
+            return {valid: true};
+        }
+    }
+    const handleLogin = async () => {
+        
+        if (!email || !name || !password){
+            alert('Please fill all the fields');
+            return;
+        }
+
+        const validMail = mailValidator(email);
+        if ( validMail.valid === false){
+            alert('Invalid Mail Id');
+        }
+        else {
+            const response = await axios.post('http://10.81.55.172:5000/api/login', { email, password });
+            console.log(response.data);
+
+            if (response.data.success){
+                alert('Login Successful');
+                await AsyncStorage.setItem(authToken, response.data.authToken);
+                setTimeout(()=>{
+                    navigation.navigate('Chats')
+                }, 1000)
+            }
+            else {
+                alert(response.data.error);
+            }
+        }
     }
 
     return (
@@ -57,14 +92,14 @@ export default function Login() {
                 {/* FORM */}
                 <View style={styles.formContainer}>
                     <Image
-                        source={NameIcon}
+                        source={EmailIcon}
                         style={{ width: 18, height: 14 }}
                         resizeMode="contain"
                     />
                     <TextInput
                         style={styles.formText}
-                        onChangeText={setText}
-                        value={text}
+                        onChangeText={setEmail}
+                        value={email}
                         placeholder={'Enter Your Email'}
                     />
                 </View>
@@ -76,8 +111,8 @@ export default function Login() {
                     />
                     <TextInput
                         style={styles.formText}
-                        onChangeText={setText}
-                        value={text}
+                        onChangeText={setPassword}
+                        value={password}
                         placeholder={'Enter Your Password'}
                     />
                 </View>
@@ -85,8 +120,7 @@ export default function Login() {
             <View style={styles.forgetPassContainer}>
                 <Text style={styles.forgetPassText}>Forget Password?</Text>
             </View>
-            <TouchableOpacity style={styles.sendButton} onPress={handleNavigChat}>
-
+            <TouchableOpacity style={styles.sendButton} onPress={handleLogin}>
                 <Text style={styles.text_main1}>Login</Text>
             </TouchableOpacity>
             <View style={styles.bottom}>
@@ -135,7 +169,8 @@ const styles = StyleSheet.create({
     },
     formText: {
         marginLeft: 15,
-        fontSize: 12
+        fontSize: 12,
+        flex: 1
     },
     forgetPassContainer: {
         marginTop: 20,

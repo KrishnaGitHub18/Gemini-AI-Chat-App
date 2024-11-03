@@ -1,20 +1,26 @@
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, ToastAndroid } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function Chats() {
-    const chatData = useSelector((state) => state.chatData.value)
 
+    const chatData = useSelector((state) => state.chatData.value)
     const [displayedChats, setDisplayedChats] = useState([]);
 
     useEffect(() => {
         
         const timer = setTimeout(() => {
             setDisplayedChats(chatData.data);
+            showToast();
         }, 1000);
         return () => clearTimeout(timer);
     
     }, [chatData]);
+
+
+    const showToast = () => {
+        ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT);
+    };
 
     return (
         <View style={styles.container}>

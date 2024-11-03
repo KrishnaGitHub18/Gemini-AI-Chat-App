@@ -8,14 +8,61 @@ import NameIcon from '../assests/Login/Name.png'
 import EmailIcon from '../assests/Login/Email.png'
 import PasswordIcon from '../assests/Login/Password.png'
 import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
 
 export default function Login() {
 
-    const [text, setText] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const navigation = useNavigation();
     const handleNavig = () => {
         navigation.navigate('Login')
+    }
+
+    const mailValidator = (email) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+        if (reg.test(email) === false) {
+            return {valid: false};
+        }
+        else {
+            return {valid: true};
+        }
+    }
+    const handlesignup = async () => {
+        console.log(name, email, password);
+
+        if (!email || !name || !password){
+            alert('Please fill all the fields');
+            return;
+        }
+
+        const mailValdity = mailValidator(email);
+        if (mailValdity.valid === false) {
+            alert("Invalid Email");
+        }
+        else {
+            if (password.length < 8){
+                alert("Password must be at least 8 characters long");
+            }
+            else {
+                const response = await axios.post('http://10.81.55.172:5000/api/signup', {name, email, password});
+                console.log(response.data);
+
+                if (response.data.success){
+                    alert('Registered Successfully');
+                    await AsyncStorage.setItem(authToken, response.data.authToken);
+                    setTimeout(()=>{
+                        navigation.navigate('Chats')
+                    }, 1000)
+                }
+                else {
+                    alert(response.data.error)
+                }
+            }
+        }
+        
     }
 
     return (
@@ -60,9 +107,9 @@ export default function Login() {
                     />
                     <TextInput
                         style={styles.formText}
-                        onChangeText={setText}
-                        value={text}
-                        placeholder={'Enter Your Email'}
+                        onChangeText={setName}
+                        value={name}
+                        placeholder={'Enter Your Name'}
                     />
                 </View>
                 <View style={styles.formContainer}>
@@ -73,8 +120,8 @@ export default function Login() {
                     />
                     <TextInput
                         style={styles.formText}
-                        onChangeText={setText}
-                        value={text}
+                        onChangeText={setEmail}
+                        value={email}
                         placeholder={'Enter Your Email'}
                     />
                 </View>
@@ -86,18 +133,20 @@ export default function Login() {
                     />
                     <TextInput
                         style={styles.formText}
-                        onChangeText={setText}
-                        value={text}
+                        onChangeText={setPassword}
+                        value={password}
                         placeholder={'Enter Your Password'}
                     />
                 </View>
             </View>
-            <TouchableOpacity style={styles.sendButton}>
-                <Text style={styles.text_main1}>Login</Text>
+            <TouchableOpacity style={styles.sendButton} onPress={handlesignup}>
+                <Text style={styles.text_main1}>Signup</Text>
             </TouchableOpacity>
             <View style={styles.bottom}>
                 <Text style={{ fontSize: 10 }}>Already Have Account?</Text>
-                <TouchableOpacity onPress={handleNavig}><Text style={{ fontSize: 10, color: '#D71E1E' }}> Login</Text></TouchableOpacity>
+                <TouchableOpacity onPress={handleNavig}>
+                    <Text style={{ fontSize: 10, color: '#D71E1E' }}> Login</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -107,7 +156,7 @@ const styles = StyleSheet.create({
     containerMain: {
         paddingHorizontal: 10,
         // paddingVertical: 20,
-        alignItems: 'center',       
+        alignItems: 'center',
         backgroundColor: "#202020",
         flex: 1
     },
@@ -142,7 +191,8 @@ const styles = StyleSheet.create({
     },
     formText: {
         marginLeft: 15,
-        fontSize: 12
+        fontSize: 12,
+        flex: 1
     },
     sendButton: {
         borderWidth: 1,
