@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -18,7 +18,6 @@ export default function Chats() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.main_text}>Chats</Text>
 
             {displayedChats && displayedChats.length > 0 ? (
                 displayedChats.map((data) => (
@@ -32,7 +31,7 @@ export default function Chats() {
                     </View>
                 ))
             ) : (
-                <Text style={styles.main_text}>Loading chats...</Text>
+                <View style={styles.loader}><ActivityIndicator size="large" color="#E64444" /></View>
             )}
         </View>
     );
@@ -83,5 +82,10 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 2,
         // fontFamily: 'PlaywriteGBS-Regular'
+    },
+    loader: {
+        height: 500,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });

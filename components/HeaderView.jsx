@@ -7,7 +7,7 @@ export default function HeaderView() {
         <View  style={styles.container}>
             <Image 
                 source={Logo}
-                style={{width: 80, height: 50}}
+                style={{ width: 100, height: 35 }}
             />
             <Image 
                 source={{uri: 'https://ongpng.com/wp-content/uploads/2023/06/person-icon1.png'}}

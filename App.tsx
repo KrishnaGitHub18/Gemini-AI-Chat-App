@@ -1,44 +1,55 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, Dimensions } from 'react-native'
-import React from 'react'
-import HeaderView from './components/HeaderView'
-import MessageBox from './components/MessageBox'
-import Chats from './components/Chats'
-import { Provider } from 'react-redux'
-import store from './store/Store'
-import Login from './components/Login'
+import React from 'react';
+import { View, SafeAreaView, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import store from './store/Store';
+
+import Login from './components/Login';
+import Signup from './components/Signup';
+import LandingPage from './components/LandingPage';
+import ChatScreen from './components/ChatScreen';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
+
+  const darkTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: '#202020', 
+      text: '#FFFFFF',       
+    },
+  };
+
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.main_container}>
-
-        <View style={styles.first_container}>
-          <HeaderView />
-          <ScrollView>
-            <Chats />
-          </ScrollView>
-          <MessageBox />
-          {/* <Login /> */}
-        </View>
-
-      </SafeAreaView>
+      <NavigationContainer theme={darkTheme}>
+        <SafeAreaView style={styles.main_container}>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: { backgroundColor: '#202020' }, 
+              headerTintColor: '#fff',                   
+              headerTitleStyle: { fontWeight: 'bold' }, 
+            }}
+          >
+            <Stack.Screen name="Home" component={LandingPage} />
+            <Stack.Screen name="Chats" component={ChatScreen} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signup" component={Signup} />
+          </Stack.Navigator>
+        </SafeAreaView>
+      </NavigationContainer>
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
-const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   main_container: {
-    // padding: 10,
     flex: 1,
     backgroundColor: "#202020",
   },
-  first_container: {
-    // borderWidth: 2,
-    flex: 1,
-    justifyContent: 'space-between',
-    height: height - 20
-  }
-})
+});
