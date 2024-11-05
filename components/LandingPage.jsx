@@ -1,14 +1,21 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BackgroundImage from '../assests/BackgroundImage.png'
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function LandingPage() {
 
     const navigation = useNavigation()
 
-    const handleNavig = () => {
-        navigation.navigate('Login')
+    const handleNavig = async () => {
+        const token = await AsyncStorage.getItem('authToken');
+        if (token) {
+            navigation.navigate('Chats');
+        }
+        else {
+            navigation.navigate('Login');
+        }
     }
 
     return (

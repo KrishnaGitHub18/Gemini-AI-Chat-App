@@ -9,6 +9,7 @@ import EmailIcon from '../assests/Login/Email.png'
 import PasswordIcon from '../assests/Login/Password.png'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Login() {
 
@@ -18,7 +19,7 @@ export default function Login() {
 
     const navigation = useNavigation();
     const handleNavig = () => {
-        navigation.navigate('Login')
+        navigation.replace('Login')
     }
 
     const mailValidator = (email) => {
@@ -52,10 +53,15 @@ export default function Login() {
 
                 if (response.data.success){
                     alert('Registered Successfully');
-                    await AsyncStorage.setItem(authToken, response.data.authToken);
-                    setTimeout(()=>{
-                        navigation.navigate('Chats')
-                    }, 1000)
+                    if (response.data.authToken){
+                        await AsyncStorage.setItem("authToken", response.data.authToken);
+                        setTimeout(()=>{
+                            navigation.replace('Chats')
+                        }, 1000)
+                    }
+                    else {
+                        console.log("ERROR")
+                    }
                 }
                 else {
                     alert(response.data.error)

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, AsyncStorage } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Logo from '../assests/logo.png'
 import GoogleLogo from '../assests/Login/Google.png'
 import FacebookLogo from '../assests/Login/facebook.png'
@@ -8,6 +8,8 @@ import EmailIcon from '../assests/Login/Email.png'
 import PasswordIcon from '../assests/Login/Password.png'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 export default function Login() {
 
@@ -16,45 +18,61 @@ export default function Login() {
 
     const navigation = useNavigation();
     const handleNavigSignup = () => {
-        navigation.navigate('Signup')
+        navigation.replace('Signup')
     }
 
     const mailValidator = (email) => {
         let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
         if (reg.test(email) === false) {
-            return {valid: false};
+            return { valid: false };
         }
         else {
-            return {valid: true};
+            return { valid: true };
         }
     }
     const handleLogin = async () => {
-        
-        if (!email || !name || !password){
+
+        if (!email || !password) {
             alert('Please fill all the fields');
             return;
         }
 
         const validMail = mailValidator(email);
-        if ( validMail.valid === false){
+        if (validMail.valid === false) {
             alert('Invalid Mail Id');
         }
         else {
             const response = await axios.post('http://10.81.55.172:5000/api/login', { email, password });
             console.log(response.data);
 
-            if (response.data.success){
+            if (response.data.success) {
                 alert('Login Successful');
-                await AsyncStorage.setItem(authToken, response.data.authToken);
-                setTimeout(()=>{
-                    navigation.navigate('Chats')
-                }, 1000)
+                if (response.data.authToken) {
+                    await AsyncStorage.setItem("authToken", response.data.authToken);
+                    setTimeout(() => {
+                        navigation.replace('Chats')
+                    }, 1000)
+                }
+                else {
+                    console.log("ERROR")
+                }
             }
             else {
                 alert(response.data.error);
             }
         }
     }
+
+
+    const verify = async () => {
+        const token = await AsyncStorage.getItem('authToken');
+        if (token){
+            navigation.navigate("Home");
+        }
+    };
+    useEffect(() => {
+        verify();
+    }, []);
 
     return (
         <View style={styles.containerMain}>

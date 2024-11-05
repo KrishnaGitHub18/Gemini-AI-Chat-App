@@ -1,9 +1,10 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import store from './store/Store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -13,15 +14,29 @@ import ChatScreen from './components/ChatScreen';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-
   const darkTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#202020', 
-      text: '#FFFFFF',       
+      background: '#202020',
+      text: '#FFFFFF',
     },
   };
+
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  const verify = async () => {
+    const token = await AsyncStorage.getItem('authToken');
+    console.log(token);
+    setIsAuthenticated(!!token);
+  };
+
+  useEffect(() => {
+    verify();
+  }, [isAuthenticated]);
+  useEffect(() => {
+    verify();
+  }, []);
 
   return (
     <Provider store={store}>
@@ -29,15 +44,64 @@ const App = () => {
         <SafeAreaView style={styles.main_container}>
           <Stack.Navigator
             screenOptions={{
-              headerStyle: { backgroundColor: '#202020' }, 
-              headerTintColor: '#fff',                   
-              headerTitleStyle: { fontWeight: 'bold' }, 
+              headerStyle: { backgroundColor: '#202020' },
+              headerTintColor: '#fff',
+              headerTitleStyle: { fontWeight: 'bold' },
             }}
           >
+            {/* <Stack.Screen name="Home" component={LandingPage} />
+            {isAuthenticated ? (
+              <Stack.Screen
+                name="Chats"
+                component={ChatScreen}
+                options={({ navigation }) => ({
+                  headerRight: () => (
+                    <TouchableOpacity
+                      onPress={async () => {
+                        await AsyncStorage.removeItem('authToken');
+                        setIsAuthenticated(false); 
+                        navigation.navigate('Home'); 
+                      }}
+                      style={{ paddingRight: 10, paddingTop: 8 }}
+                    >
+                      <Text style={{ color: '#fff' }}>Logout</Text>
+                    </TouchableOpacity>
+                  ),
+                })}
+              />
+            ) : (
+              <>
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Signup" component={Signup} />
+              </>
+            )} */}
+
+
             <Stack.Screen name="Home" component={LandingPage} />
-            <Stack.Screen name="Chats" component={ChatScreen} />
+
+            <Stack.Screen
+              name="Chats"
+              component={ChatScreen}
+              options={({ navigation }) => ({
+                headerRight: () => (
+                  <TouchableOpacity
+                    onPress={async () => {
+                      await AsyncStorage.removeItem('authToken');
+                      setIsAuthenticated(false);
+                      navigation.navigate('Home');
+                    }}
+                    style={{ paddingRight: 10, paddingTop: 8 }}
+                  >
+                    <Text style={{ color: '#fff' }}>Logout</Text>
+                  </TouchableOpacity>
+                ),
+              })}
+            />
+
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
+
+
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
@@ -50,6 +114,6 @@ export default App;
 const styles = StyleSheet.create({
   main_container: {
     flex: 1,
-    backgroundColor: "#202020",
+    backgroundColor: '#202020',
   },
 });
