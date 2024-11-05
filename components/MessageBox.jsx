@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setChatData } from '../store/chatDataSlice'
 import SendIcon from '../assests/SendIcon.png'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function MessageBox() {
 
@@ -18,7 +19,7 @@ export default function MessageBox() {
 
       if (text) {
         // const response_API = await axios.post('https://gemini-ai-chat-app.vercel.app/api/apiHandler', { que });
-        const response_API = await axios.post('http://10.81.55.172:5000/api/apiHandler', { que });
+        const response_API = await axios.post('http://10.81.55.172:5000/api/apiHandler', { que, username });
         if (response_API.data.success) {
           console.log("done hai");
           fetchChatData();
@@ -38,8 +39,9 @@ export default function MessageBox() {
   }
 
   const fetchChatData = async () => {
-    const response_chatAPI = await axios.get('https://gemini-ai-chat-app.vercel.app/api/printData');
-    // console.log(response_chatAPI.data);
+    const username = await AsyncStorage.getItem('username');
+    console.log(username);
+    const response_chatAPI = await axios.post('http://10.81.55.172:5000/api/printData', {username});
     dispatch(setChatData(response_chatAPI.data));
   }
 

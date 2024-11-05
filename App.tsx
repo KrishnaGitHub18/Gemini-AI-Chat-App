@@ -23,20 +23,18 @@ const App = () => {
     },
   };
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  const verify = async () => {
-    const token = await AsyncStorage.getItem('authToken');
-    console.log(token);
-    setIsAuthenticated(!!token);
+  const fetchToken = async () => {
+    try {
+      const token = await AsyncStorage.getItem('authToken');
+      console.log(token);
+    } catch (error) {
+      console.error("Error fetching auth token:", error);
+    }
   };
 
   useEffect(() => {
-    verify();
-  }, [isAuthenticated]);
-  useEffect(() => {
-    verify();
-  }, []);
+    fetchToken(); 
+  }, []); 
 
   return (
     <Provider store={store}>
@@ -49,33 +47,6 @@ const App = () => {
               headerTitleStyle: { fontWeight: 'bold' },
             }}
           >
-            {/* <Stack.Screen name="Home" component={LandingPage} />
-            {isAuthenticated ? (
-              <Stack.Screen
-                name="Chats"
-                component={ChatScreen}
-                options={({ navigation }) => ({
-                  headerRight: () => (
-                    <TouchableOpacity
-                      onPress={async () => {
-                        await AsyncStorage.removeItem('authToken');
-                        setIsAuthenticated(false); 
-                        navigation.navigate('Home'); 
-                      }}
-                      style={{ paddingRight: 10, paddingTop: 8 }}
-                    >
-                      <Text style={{ color: '#fff' }}>Logout</Text>
-                    </TouchableOpacity>
-                  ),
-                })}
-              />
-            ) : (
-              <>
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Signup" component={Signup} />
-              </>
-            )} */}
-
 
             <Stack.Screen name="Home" component={LandingPage} />
 
@@ -87,7 +58,6 @@ const App = () => {
                   <TouchableOpacity
                     onPress={async () => {
                       await AsyncStorage.removeItem('authToken');
-                      setIsAuthenticated(false);
                       navigation.navigate('Home');
                     }}
                     style={{ paddingRight: 10, paddingTop: 8 }}

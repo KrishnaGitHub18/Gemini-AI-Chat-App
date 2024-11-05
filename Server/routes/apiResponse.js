@@ -5,7 +5,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();  
 
 router.post('/apiHandler', async (req, res) => {
-    var que = req.body.que;
+    var {que, username} = req.body;
     que += " in 200 words maximum";
     console.log(que);
     // return;
@@ -28,7 +28,8 @@ router.post('/apiHandler', async (req, res) => {
 
         await User.create({
             question: que.slice(0,-21),
-            answer: cleanedText
+            answer: cleanedText,
+            username: username
         });
 
         res.status(200).json({ success: true, message: "Successfully added que and response" });

@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
             jwtSecret, 
             { expiresIn: '3d' }
         );
-        res.status(200).json({ success: true, message: 'Login successful', authToken });
+        res.status(200).json({ success: true, message: 'Login successful', authToken, name });
 
     } catch (error) {
         console.log(error);

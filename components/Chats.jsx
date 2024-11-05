@@ -11,6 +11,7 @@ export default function Chats() {
 
         const timer = setTimeout(() => {
             setDisplayedChats(chatData.data);
+            console.log(chatData.data)
             showToast();
         }, 1000);
         return () => clearTimeout(timer);

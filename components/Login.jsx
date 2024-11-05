@@ -49,6 +49,7 @@ export default function Login() {
                 alert('Login Successful');
                 if (response.data.authToken) {
                     await AsyncStorage.setItem("authToken", response.data.authToken);
+                    await AsyncStorage.setItem("username", response.data.name);
                     setTimeout(() => {
                         navigation.replace('Chats')
                     }, 1000)
@@ -62,17 +63,6 @@ export default function Login() {
             }
         }
     }
-
-
-    const verify = async () => {
-        const token = await AsyncStorage.getItem('authToken');
-        if (token){
-            navigation.navigate("Home");
-        }
-    };
-    useEffect(() => {
-        verify();
-    }, []);
 
     return (
         <View style={styles.containerMain}>

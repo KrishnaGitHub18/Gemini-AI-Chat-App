@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require('../Model/ChatDataModel');
 
-router.get('/printData', async (req, res) => {
+router.post('/printData', async (req, res) => {
 
+    const username = req.body.username;
+    
     try {
-        const data = await User.find();
+        const data = await User.find({ username: username });
         res.status(200).json({ success: true, data });
     } catch (error) {
         console.error("Error fetching data from MongoDB:", error);

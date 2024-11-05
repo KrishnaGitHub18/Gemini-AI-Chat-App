@@ -55,6 +55,7 @@ export default function Login() {
                     alert('Registered Successfully');
                     if (response.data.authToken){
                         await AsyncStorage.setItem("authToken", response.data.authToken);
+                        await AsyncStorage.setItem("username", name);
                         setTimeout(()=>{
                             navigation.replace('Chats')
                         }, 1000)
