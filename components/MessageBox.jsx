@@ -19,6 +19,8 @@ export default function MessageBox() {
 
       if (text) {
         // const response_API = await axios.post('https://gemini-ai-chat-app.vercel.app/api/apiHandler', { que });
+        
+        const username = await AsyncStorage.getItem('username');
         const response_API = await axios.post('http://10.81.55.172:5000/api/apiHandler', { que, username });
         if (response_API.data.success) {
           console.log("done hai");
@@ -40,9 +42,13 @@ export default function MessageBox() {
 
   const fetchChatData = async () => {
     const username = await AsyncStorage.getItem('username');
-    console.log(username);
     const response_chatAPI = await axios.post('http://10.81.55.172:5000/api/printData', {username});
-    dispatch(setChatData(response_chatAPI.data));
+    if (response_chatAPI.data){
+      dispatch(setChatData(response_chatAPI.data));
+    }
+    else {
+      console.log("no data")
+    }
   }
 
   useEffect(() => {

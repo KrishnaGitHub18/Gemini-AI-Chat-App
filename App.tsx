@@ -10,6 +10,9 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import LandingPage from './components/LandingPage';
 import ChatScreen from './components/ChatScreen';
+import ForgotPassword from './components/ForgotPassword';
+import OTP from './components/OTP';
+import OTPSuccess from './components/OTPSuccess';
 
 const Stack = createNativeStackNavigator();
 
@@ -70,7 +73,9 @@ const App = () => {
 
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
-
+            <Stack.Screen name="forgotPassword" component={ForgotPassword} />
+            <Stack.Screen name="OTP" component={OTP} />
+            <Stack.Screen name="OTPSuccess" component={OTPSuccess} />
 
           </Stack.Navigator>
         </SafeAreaView>

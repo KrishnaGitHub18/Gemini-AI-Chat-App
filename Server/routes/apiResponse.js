@@ -6,6 +6,11 @@ require('dotenv').config();
 
 router.post('/apiHandler', async (req, res) => {
     var {que, username} = req.body;
+
+    if (!que || !username){
+        return res.json({success: false, message: "Que is required!"});
+    }
+
     que += " in 200 words maximum";
     console.log(que);
     // return;

@@ -64,6 +64,11 @@ export default function Login() {
         }
     }
 
+    const handleForgotPassword = () => {
+        navigation.replace('forgotPassword')
+        // navigation.replace('OTPSuccess')
+    }
+
     return (
         <View style={styles.containerMain}>
             <Image
@@ -126,7 +131,9 @@ export default function Login() {
                 </View>
             </View>
             <View style={styles.forgetPassContainer}>
-                <Text style={styles.forgetPassText}>Forget Password?</Text>
+                <TouchableOpacity onPress={handleForgotPassword}>
+                    <Text style={styles.forgetPassText}>Forget Password?</Text>
+                </ TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.sendButton} onPress={handleLogin}>
                 <Text style={styles.text_main1}>Login</Text>

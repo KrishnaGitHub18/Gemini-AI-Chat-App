@@ -15,6 +15,7 @@ app.use('/api', require('./routes/apiResponse'));
 app.use('/api', require('./routes/printData'));
 app.use('/api', require('./routes/signup'));
 app.use('/api', require('./routes/login'));
+app.use('/api', require('./routes/forgotPassword'));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
